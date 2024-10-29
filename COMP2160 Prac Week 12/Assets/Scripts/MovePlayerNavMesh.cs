@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -57,5 +58,11 @@ public class MovePlayerNavMesh : MonoBehaviour
         {
             _destination = hit.point;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLineStrip(_navMeshAgent.path.corners, false);
     }
 }
