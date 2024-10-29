@@ -58,5 +58,16 @@ public class MovePlayerNavMesh : MonoBehaviour
         {
             _destination = hit.point;
         }
+    }        
+
+    private void MoveToDestination()
+    {
+        Vector3 offset = _destination - transform.position;
+        Vector3 move = offset.normalized * speed * Time.deltaTime;
+        if (move.magnitude > offset.magnitude)  // avoid overshoot
+        {
+            move = offset;
+        }
+        transform.Translate(move);
     }
 }
