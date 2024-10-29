@@ -10,8 +10,7 @@ public class MovePlayerNavMesh : MonoBehaviour
     private PlayerActions _playerActions;
     private InputAction _mousePosition;
     private InputAction _mouseClick;
-
-    [SerializeField] private float speed = 5;
+    
     [SerializeField] private LayerMask layerMask;
     private Vector3 _destination;
     private NavMeshAgent _navMeshAgent;
@@ -58,16 +57,5 @@ public class MovePlayerNavMesh : MonoBehaviour
         {
             _destination = hit.point;
         }
-    }        
-
-    private void MoveToDestination()
-    {
-        Vector3 offset = _destination - transform.position;
-        Vector3 move = offset.normalized * speed * Time.deltaTime;
-        if (move.magnitude > offset.magnitude)  // avoid overshoot
-        {
-            move = offset;
-        }
-        transform.Translate(move);
     }
 }
